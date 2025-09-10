@@ -29,9 +29,7 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 
 # Install Python dependencies
-# First, install onnxruntime-openvino to avoid executable stack issues
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir onnxruntime-openvino && \
     pip install --no-cache-dir -r requirements.txt
 
 # Copy project files
