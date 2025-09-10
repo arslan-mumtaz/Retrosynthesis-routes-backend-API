@@ -5,6 +5,7 @@ transformers
 pandas
 numpy
 scikit-learn
+huggingface_hub
 
 # API Framework
 fastapi
