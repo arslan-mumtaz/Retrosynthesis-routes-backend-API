@@ -1,5 +1,5 @@
 # Use Python 3.11 slim image for smaller size
-FROM python:3.11-slim-bookworm
+FROM python:3.11-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -13,7 +13,7 @@ WORKDIR /app
 
 # Install minimal system dependencies for RDKit (split into smaller chunks)
 RUN apt-get update && apt-get install -y \
-    gcc g++ wget curl git build-essential execstack \
+    gcc g++ wget curl git build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y \
@@ -29,11 +29,10 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 
 # Install Python dependencies
+# First, install onnxruntime-openvino to avoid executable stack issues
 RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir onnxruntime-openvino && \
     pip install --no-cache-dir -r requirements.txt
-
-# Fix for onnxruntime: "cannot enable executable stack"
-RUN execstack -c /usr/local/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.cpython-311-x86_64-linux-gnu.so
 
 # Copy project files
 COPY . .
