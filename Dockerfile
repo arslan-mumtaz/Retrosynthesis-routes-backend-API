@@ -30,7 +30,9 @@ RUN apt-get update && apt-get install -y \
     libx11-6 \
     libfontconfig1 \
     libxss1 \
-    libgconf-2-4 \
+    libcairo2-dev \
+    libgtk-3-dev \
+    libgdk-pixbuf2.0-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
