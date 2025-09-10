@@ -13,7 +13,7 @@ WORKDIR /app
 
 # Install minimal system dependencies for RDKit (split into smaller chunks)
 RUN apt-get update && apt-get install -y \
-    gcc g++ wget curl git build-essential \
+    gcc g++ wget curl git build-essential execstack \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y \
@@ -31,6 +31,9 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
+
+# Fix for onnxruntime: "cannot enable executable stack"
+RUN execstack -c /usr/local/lib/python3.11/site-packages/onnxruntime/capi/onnxruntime_pybind11_state.cpython-311-x86_64-linux-gnu.so
 
 # Copy project files
 COPY . .
