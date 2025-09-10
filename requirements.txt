@@ -1,0 +1,35 @@
+# Core ML and Chemistry
+aizynthfinder
+torch
+transformers
+pandas
+numpy
+scikit-learn
+
+# API Framework
+fastapi
+uvicorn[standard]
+pydantic
+
+# Image Processing
+Pillow
+matplotlib
+
+# Web and HTTP
+requests
+httpx
+
+# Chemistry Libraries
+pubchempy
+rdkit
+mol-utils
+
+# Utilities
+python-dotenv
+python-multipart
+
+# Optional AI
+openai>=1.0.0
+
+# Legacy (keeping for compatibility)
+Flask

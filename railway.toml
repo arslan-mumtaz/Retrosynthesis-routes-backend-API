@@ -1,0 +1,19 @@
+# Railway deployment configuration
+# This file tells Railway how to deploy your app
+
+# Python version
+[build]
+python_version = "3.11"
+
+# Environment variables for production
+[env]
+PYTHONPATH = "/app"
+PORT = 8000
+HOST = "0.0.0.0"
+ENVIRONMENT = "production"
+
+# Health check endpoint
+[health]
+path = "/health"
+port = 8000
+timeout = 30
