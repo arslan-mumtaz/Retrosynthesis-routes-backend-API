@@ -11,28 +11,18 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 # Set work directory
 WORKDIR /app
 
-# Install system dependencies including X11 libraries for RDKit
+# Install minimal system dependencies for RDKit (split into smaller chunks)
 RUN apt-get update && apt-get install -y \
-    gcc \
-    g++ \
-    wget \
-    curl \
-    git \
-    build-essential \
-    libxml2-dev \
-    libxslt-dev \
-    zlib1g-dev \
-    libjpeg-dev \
-    libpng-dev \
-    libfreetype6-dev \
-    libxrender1 \
-    libxext6 \
-    libx11-6 \
-    libfontconfig1 \
-    libxss1 \
-    libcairo2-dev \
-    libgtk-3-dev \
-    libgdk-pixbuf2.0-dev \
+    gcc g++ wget curl git build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y \
+    libxml2-dev libxslt-dev zlib1g-dev \
+    libjpeg-dev libpng-dev libfreetype6-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y \
+    libxrender1 libxext6 libx11-6 libfontconfig1 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
