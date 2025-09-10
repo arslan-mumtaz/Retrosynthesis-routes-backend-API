@@ -29,16 +29,16 @@ def main():
     # Configuration with download URLs
     downloads = {
         # Stock database
-        "zinc_stock.hdf5": os.getenv("ZINC_STOCK_URL"),
+        "zinc_stock.hdf5": "https://github.com/arslan-mumtaz/Retrosynthesis-routes-backend-API/releases/download/zinc/zinc_stock.hdf5",
         
         # ONNX models
-        "uspto_model.onnx": os.getenv("USPTO_MODEL_URL"),
-        "uspto_ringbreaker_model.onnx": os.getenv("USPTO_RINGBREAKER_MODEL_URL"),
-        "uspto_filter_model.onnx": os.getenv("USPTO_FILTER_MODEL_URL"),
+        "uspto_model.onnx": "https://github.com/arslan-mumtaz/Retrosynthesis-routes-backend-API/releases/download/zinc/uspto_model.onnx",
+        "uspto_ringbreaker_model.onnx": "https://github.com/arslan-mumtaz/Retrosynthesis-routes-backend-API/releases/download/zinc/uspto_ringbreaker_model.onnx",
+        "uspto_filter_model.onnx": "https://github.com/arslan-mumtaz/Retrosynthesis-routes-backend-API/releases/download/zinc/uspto_filter_model.onnx",
         
         # Template files
-        "uspto_templates.csv.gz": os.getenv("USPTO_TEMPLATES_URL"),
-        "uspto_ringbreaker_templates.csv.gz": os.getenv("USPTO_RINGBREAKER_TEMPLATES_URL"),
+        "uspto_templates.csv.gz": "https://github.com/arslan-mumtaz/Retrosynthesis-routes-backend-API/releases/download/zinc/uspto_templates.csv.gz",
+        "uspto_ringbreaker_templates.csv.gz": "https://github.com/arslan-mumtaz/Retrosynthesis-routes-backend-API/releases/download/zinc/uspto_ringbreaker_templates.csv.gz",
     }
     
     # Only download if URLs are provided
