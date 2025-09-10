@@ -5,7 +5,6 @@ transformers
 pandas
 numpy
 scikit-learn
-onnxruntime-openvino # Use OpenVINO version to avoid executable stack issues
 
 # API Framework
 fastapi
