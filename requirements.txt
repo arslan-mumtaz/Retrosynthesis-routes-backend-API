@@ -22,7 +22,6 @@ httpx
 # Chemistry Libraries
 pubchempy
 rdkit
-mol-utils
 
 # Utilities
 python-dotenv
