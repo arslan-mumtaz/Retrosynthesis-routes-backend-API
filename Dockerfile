@@ -28,9 +28,11 @@ RUN apt-get update && apt-get install -y \
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install Python dependencies, then force-replace onnxruntime with a compatible version
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir -r requirements.txt && \
+    pip uninstall -y onnxruntime && \
+    pip install --no-cache-dir onnxruntime-gpu
 
 # Copy project files
 COPY . .
