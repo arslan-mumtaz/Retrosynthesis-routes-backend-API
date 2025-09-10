@@ -6,6 +6,7 @@ import os
 import requests
 import yaml
 from pathlib import Path
+from huggingface_hub import snapshot_download
 
 def download_file(url, local_path):
     """Download a file from URL to local path"""
@@ -23,8 +24,33 @@ def download_file(url, local_path):
     
     print(f"✅ Downloaded {local_path}")
 
+def download_huggingface_model():
+    """Download ReactionT5v2 model from Hugging Face"""
+    try:
+        print("📥 Downloading ReactionT5v2 model from Hugging Face...")
+        
+        # Download to the expected path
+        model_path = Path("models/reactiont5v2-forward")
+        model_path.mkdir(parents=True, exist_ok=True)
+        
+        # Download the model
+        snapshot_download(
+            repo_id="sagawa/ReactionT5v2-forward",
+            local_dir=str(model_path),
+            local_dir_use_symlinks=False
+        )
+        
+        print(f"✅ Downloaded ReactionT5v2 model to {model_path}")
+        
+    except Exception as e:
+        print(f"❌ Failed to download ReactionT5v2 model: {e}")
+        print("⚠️  Will try to use existing model files if available")
+
 def main():
     """Download all required model files"""
+    
+    # First download the Hugging Face model
+    download_huggingface_model()
     
     # Configuration with download URLs
     downloads = {
